@@ -1,0 +1,10 @@
+name: 'wpp_case_study'
+version: '1.0.0'
+profile: 'wpp_case_study'
+
+models:
+  wpp_case_study:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
