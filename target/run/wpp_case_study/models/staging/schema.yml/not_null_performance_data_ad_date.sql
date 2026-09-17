@@ -13,9 +13,9 @@
 
 
 
-select platform
-from `wpp-dev-test`.`original_data`.`stg_ad_data`
-where platform is null
+select ad_date
+from `wpp-dev-test`.`gmail_rawdata`.`performance_data`
+where ad_date is null
 
 
 

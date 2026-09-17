@@ -1,4 +1,8 @@
--- Step 1: Grab the raw data from BigQuery
+
+
+  create or replace view `wpp-dev-test`.`original_data`.`stagging_data`
+  OPTIONS()
+  as -- Step 1: Grab the raw data from BigQuery
 WITH original_data AS (
     SELECT * 
     FROM `wpp-dev-test`.`original_data`.`original_table1`
@@ -31,4 +35,5 @@ cleaned_data AS (
 SELECT * 
 FROM cleaned_data
 -- This rule says: "Look at the ad_id. If you see the same ad_id more than once, only keep the row number 1."
-QUALIFY ROW_NUMBER() OVER (PARTITION BY ad_id ORDER BY ad_date DESC) = 1
+QUALIFY ROW_NUMBER() OVER (PARTITION BY ad_id ORDER BY ad_date DESC) = 1;
+

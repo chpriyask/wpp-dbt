@@ -1,38 +1,39 @@
 version: 2
 
 sources:
-  - name: raw_data
-    # If your BigQuery project name is different, change 'wpp-dev-test' below
+  - name: gmail_rawdata
     database: wpp-dev-test 
-    schema: raw_data
+    schema: gmail_rawdata
     tables:
-      - name: ad_data_raw
+      - name: adv_table
         description: "The raw CSV data loaded into BigQuery"
 
 models:
-  - name: stg_ad_data
-    description: "Cleaned data: formatting fixed, nulls replaced, and duplicates removed."
+  - name: staging_data
+    description: "in staging data formatting fixed, nulls replaced, and duplicates removed."
     columns:
       - name: ad_id
         description: "The unique identifier for each row"
         tests:
-          # Test 1: Checks for duplicates (Proves your QUALIFY ROW_NUMBER worked!)
           - unique
-          # Test 2: Ensures the ID is never totally blank
           - not_null 
       - name: platform
         tests:
           - not_null
+          - accepted_values:
+              values: ['google ads', 'meta ads', 'tiktok ads'] 
+      - name: campaign_name
+        tests:
+          - not_null
       - name: conversions
-        description: "Null values are forced to 0 here."
+        description: "Null values are forced to 0 value."
         tests:
           - not_null
 
-  - name: fct_ad_performance
-    description: "The final business math for the Account team, calculating CPA and Funnel rates."
+  - name: performance_data
+    description: "Daily aggregated campaign performance."
     columns:
       - name: ad_date
+        description: "ad_date should not be null."
         tests:
           - not_null
-      - name: platform
-      - name: campaign_name

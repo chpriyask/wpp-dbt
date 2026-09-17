@@ -1,7 +1,7 @@
 -- Step 1: Grab the raw data from BigQuery
-WITH raw_data AS (
+WITH original_data AS (
     SELECT * 
-    FROM {{ source('raw_data', 'ad_data_raw') }}
+    FROM `wpp-dev-test`.`original_data`.`original_table1`
 ),
 
 -- Step 2: Clean the data
@@ -24,7 +24,7 @@ cleaned_data AS (
         -- Fix the empty conversion fields: If it is NULL, make it a 0.
         CAST(COALESCE(conversions, 0) AS INT64) AS conversions
 
-    FROM raw_data
+    FROM original_data
 )
 
 -- Step 3: Remove duplicates (This handles your second file)

@@ -1,7 +1,7 @@
 -- Step 1: Grab the clean data from your staging file
 WITH clean_data AS (
     SELECT * 
-    FROM `wpp-dev-test`.`original_data`.`stg_ad_data`
+    FROM `wpp-dev-test`.`original_data`.`stagging_data`
 )
 
 -- Step 2: Group the data and do the math

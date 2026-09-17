@@ -2,7 +2,7 @@
   
     
 
-    create or replace table `wpp-dev-test`.`raw_data`.`fct_ad_performance`
+    create or replace table `wpp-dev-test`.`original_data`.`fct_ad_performance`
       
     
     
@@ -13,7 +13,7 @@
       -- Step 1: Grab the clean data from your staging file
 WITH clean_data AS (
     SELECT * 
-    FROM `wpp-dev-test`.`raw_data`.`stg_ad_data`
+    FROM `wpp-dev-test`.`original_data`.`stg_ad_data`
 )
 
 -- Step 2: Group the data and do the math

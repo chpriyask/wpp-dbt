@@ -14,7 +14,7 @@
 with dbt_test__target as (
 
   select ad_id as unique_field
-  from `wpp-dev-test`.`original_data`.`stg_ad_data`
+  from `wpp-dev-test`.`gmail_rawdata`.`staging_data`
   where ad_id is not null
 
 )

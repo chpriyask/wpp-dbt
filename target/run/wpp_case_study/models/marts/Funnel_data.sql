@@ -1,7 +1,19 @@
--- Step 1: Grab the clean data from your staging file
+
+  
+    
+
+    create or replace table `wpp-dev-test`.`original_data`.`Funnel_data`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      -- Step 1: Grab the clean data from your staging file
 WITH clean_data AS (
     SELECT * 
-    FROM {{ ref('stg_ad_data') }}
+    FROM `wpp-dev-test`.`original_data`.`stagging_data`
 )
 
 -- Step 2: Group the data and do the math
@@ -31,3 +43,5 @@ SELECT
 FROM clean_data
 -- We must group by the first 3 columns (date, platform, campaign) so BigQuery knows how to bundle the totals
 GROUP BY 1, 2, 3
+    );
+  
